@@ -5,14 +5,14 @@ public class Slide {
 
 	public char type;
 	public ArrayList<Integer> ids;
-	public HashSet<String> tags;
+	public HashSet<String> tagsSet;
 	public ArrayList<String> tagsarray;
 
 	public Slide(Photo p){
     // Horizontal
 		type = p.type;
 		ids.add(p.id);
-		tags = p.tags;
+		tagsarray = p.tags;
 	}
 	public Slide(Photo p1, Photo p2){
     // Vertical
@@ -20,8 +20,8 @@ public class Slide {
 		ids.add(p1.id);
 		ids.add(p2.id);
     String temp;
-    Hashet<String> h = new Hashset<String>();
-    ArrayList<String> t = new ArrayList<Sring>();
+    HashSet<String> h = new HashSet<String>();
+    ArrayList<String> t = new ArrayList<String>();
     for(int i=0; i<p1.N; i++){
       temp = p1.tags.get(i);
       if(! h.contains(temp)){
@@ -36,14 +36,8 @@ public class Slide {
         t.add(temp);
       }
     }
-		tags = h;
+		tagsSet = h;
     tagsarray = t;
 	}
 
-	public void print() {
-		System.out.println("Photo is  " + String.valueOf(type) + " and has " + String.valueOf(N) + " tags:");
-		for(int i=0; i<N; i++){
-			System.out.println("	" + tags.get(i));
-		}
-	}
 }
