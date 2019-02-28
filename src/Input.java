@@ -2,23 +2,29 @@ import java.io.*;
 import java.util.*;
 public class Input{
 
-  public ArrayList<Photo> readPhotos(String filename)throws Exception 
-  { 
+
+
+  ArrayList<Photo> horiz;
+  ArrayList<Photo> vertic;
+
+  public void readPhotos(String filename)throws Exception { 
   
     File file = new File(filename); 
+   
     
-    BufferedReader br = new BufferedReader(new FileReader(file)); 
-    
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    this.horiz = new ArrayList<Photo>();
+    this.vertic = new ArrayList<Photo>();
     Long numofpics;
     String st;
     String[] Curr_line; 
-    char c;
+    Character c;
     int id,numoftags;
     ArrayList<String> curr_tags;
     st = br.readLine();
     numofpics = Long.parseLong(st);
     id = 0;
-    ArrayList<Photo> photo_list = new ArrayList<Photo>();
+    
     while ((st = br.readLine()) !=null) {
         System.out.println(st); 
         
@@ -33,10 +39,23 @@ public class Input{
             curr_tags.add(Curr_line[i]);
         }
         Photo new_ph = new Photo(c,id,Curr_line.length-2,curr_tags);
-        photo_list.add(new_ph);
+        if(c.equals('H'))
+          this.horiz.add(new_ph);
+        else
+          this.vertic.add(new_ph);       
+        
     }
-    return photo_list;
+    
   }  
+
+  public ArrayList<Photo> getVertic(){
+    return this.vertic;
+  }
+
+  public ArrayList<Photo> getHoriz(){
+    return this.horiz;
+  }
+
   public static void main(String[] args)throws Exception { 
     Input inp = new Input();
     inp.readPhotos("a_example.txt");
