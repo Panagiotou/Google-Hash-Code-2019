@@ -1,22 +1,22 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 public class Slide {
 
 	public char type;
 	public ArrayList<Integer> ids;
 	public HashSet<String> tagsSet;
-	public ArrayList<String> tagsarray;
+	public ArrayList<String> tagsArray;
 
 	public Slide(Photo p){
     // Horizontal
 		type = p.type;
+    ids = new ArrayList<Integer>();
 		ids.add(p.id);
-		tagsarray = p.tags;
+		tagsArray = p.tags;
 	}
 	public Slide(Photo p1, Photo p2){
     // Vertical
 		type = p1.type;
+    ids = new ArrayList<Integer>();
 		ids.add(p1.id);
 		ids.add(p2.id);
     String temp;
@@ -37,7 +37,16 @@ public class Slide {
       }
     }
 		tagsSet = h;
-    tagsarray = t;
+    tagsArray = t;
 	}
+  public void printTags(){
+    System.out.println("Slide has tags: ");
+    for(int i=0; i<tagsArray.size(); i++){
+      System.out.println("	" + tagsArray.get(i));
+    }
+  }
+
+
+
 
 }
